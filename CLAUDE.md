@@ -2,15 +2,14 @@
 
 ## Environment
 
-Always use the venv. Never invoke bare `python` or `pytest`.
+Dependencies (PyMuPDF and pytest) are installed globally via Homebrew.
 
 ```
-make install   # creates .venv/ if it doesn't exist
-make test      # runs the full test suite via .venv/bin/pytest
+make test      # runs the full test suite
 ```
 
-To run pytest directly: `.venv/bin/pytest tests/ -v`
-To run the script directly: `.venv/bin/python pdf_text_replace.py`
+To run pytest directly: `pytest tests/ -v`
+To run the script directly: `./pdf_text_replace.py`
 
 ## Project notes
 
