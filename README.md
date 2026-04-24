@@ -5,11 +5,12 @@ Replace text strings in a PDF while preserving the original font, size, and colo
 ## Usage
 
 ```
-python pdf_text_replace.py --input <file.pdf> --replace "OLD => NEW" [--replace "..."] [--output <output.pdf>]
-python pdf_text_replace.py --input <file.pdf> --replacements-file <replacements.txt> [--output <output.pdf>]
+pdf_text_replace.py --input <file.pdf> --replace "OLD => NEW" [--replace "..."] [--output <output.pdf>]
+pdf_text_replace.py --input <file.pdf> --replacements-file <replacements.txt> [--output <output.pdf>]
 ```
 
-At least one of `--replace` or `--replacements-file` is required. Both can be combined.
+* At least one of `--replace` or `--replacements-file` is required. Both can be combined.
+* If `--output` is not specified, the word `_replaced` is appended to the input file
 
 | Flag | Description |
 |---|---|
@@ -20,38 +21,19 @@ At least one of `--replace` or `--replacements-file` is required. Both can be co
 
 ## Replacements file format
 
-Each line specifies one substitution using `=>` as the separator. Blank lines and lines starting with `#` are ignored.
+Each line specifies one substitution using `=>` as the separator.
+
+Blank lines and lines starting with `#` are ignored.
 
 ```
-JOHN SMITH => JANE DOE
-Acme Co => Theta Co
+OLD => NEW
+Taco Bell => Del Taco
 ```
+
+This project also comes with an [mcp_server.py](mcp_server.py).
+
+The mcp portion can be managed with `make mcp-install` and `make mcp-remove`
 
 ## Development
 
-See [DEVELOPMENT.md](DEVELOPMENT.md) for setup, running tests, and venv usage.
-
-## Examples
-
-```
-# Single inline replacement
-python pdf_text_replace.py --input statement.pdf --replace "JOHN SMITH => JANE DOE"
-
-# Multiple inline replacements
-python pdf_text_replace.py --input statement.pdf --replace "JOHN SMITH => JANE DOE" --replace "Acme Co => Theta Co"
-
-# From a replacements file
-python pdf_text_replace.py --input statement.pdf --replacements-file replacements.txt
-
-# Explicit output path
-python pdf_text_replace.py --input statement.pdf --replacements-file replacements.txt --output redacted.pdf
-```
-
-## Running from another directory
-
-Activate the venv once, then invoke the script by its full path. Your `--input`, `--replacements-file`, and `--output` paths can be relative to wherever you are.
-
-```
-source ~/pdf_text_replace/.venv/bin/activate
-python ~/pdf_text_replace/pdf_text_replace.py --input ./input.pdf --replacements-file ./replacements.txt --output ./output.pdf
-```
+See [DEVELOPMENT.md](DEVELOPMENT.md) for setup, running tests, and installing/removing the mcp.
