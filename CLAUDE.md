@@ -2,13 +2,14 @@
 
 ## Environment
 
-Dependencies (PyMuPDF and pytest) are installed globally via Homebrew.
+Dependencies are managed in a `.venv` virtual environment.
 
 ```
+make install   # create .venv and install dependencies
 make test      # runs the full test suite
 ```
 
-To run pytest directly: `pytest tests/ -v`
+To run pytest directly: `.venv/bin/pytest tests/ -v`
 To run the script directly: `./pdf_text_replace.py`
 
 ## Project notes

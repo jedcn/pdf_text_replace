@@ -26,7 +26,19 @@ You'll get:
 
 ![after](docs/after.png)
 
-## Usage
+This style of invocation uses two `--replace` arguments.
+
+You could also put all of the replacements you wanted to make in a file and direct the script to use that file with `--replacements`:
+
+```
+# Comments Allowed
+A => ONE
+B => TWO
+C => THREE
+D => FOUR
+```
+
+## Additional Usage Details
 
 ```
 pdf_text_replace.py --input <file.pdf> --replace "OLD => NEW" [--replace "..."] [--output <output.pdf>]
@@ -43,21 +55,10 @@ pdf_text_replace.py --input <file.pdf> --replacements-file <replacements.txt> [-
 | `--replacements-file` | File of replacements (see format below) |
 | `--output` | Output PDF path (default: `<input>_replaced.pdf`) |
 
-## Replacements file format
+This project also comes with an [mcp_server](mcp_server.py).
 
-Each line specifies one substitution using `=>` as the separator.
-
-Blank lines and lines starting with `#` are ignored.
-
-```
-OLD => NEW
-Taco Bell => Del Taco
-```
-
-This project also comes with an [mcp_server.py](mcp_server.py).
-
-The mcp portion can be managed with `make mcp-install` and `make mcp-remove`
+The mcp aspect is managed with `make mcp-install` and `make mcp-remove`
 
 ## Development
 
-See [DEVELOPMENT.md](DEVELOPMENT.md) for setup, running tests, and installing/removing the mcp.
+See [VENV.md](VENV.md) for virtual environment setup (including optional direnv integration) and [DEVELOPMENT.md](DEVELOPMENT.md) for running tests and installing/removing the MCP server.
