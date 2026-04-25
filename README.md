@@ -4,7 +4,7 @@ Replace text strings in a PDF while preserving the original font, size, and colo
 
 ## Example
 
-Imagine a PDF exists in the world named `f15314.pdf` and you could get it on your machine via wget https://www.irs.gov/pub/irs-pdf/f15314.pdf.
+Imagine a PDF exists in the world named `f15314.pdf` and you could get it on your machine via `wget https://www.irs.gov/pub/irs-pdf/f15314.pdf`.
 
 When you open up this form, you see it has text with "Form 15314" and "April 2026" in it like so:
 
@@ -15,9 +15,10 @@ Imagine you want to change `April 2026` to `May 2026` and that form number `1531
 With pdf_text_replace you can run:
 
 ```
-pdf_text_replace.py --input f15314.pdf \
-    --replace "April 2026 => May 2026" \
-    --replace "15314 => 26425"
+pdf_text_replace.py \
+  --input f15314.pdf \
+  --replace "April 2026 => May 2026" \
+  --replace "15314 => 26425"
 ```
 
 And you'd see the following output:
@@ -45,6 +46,8 @@ B => TWO
 C => THREE
 D => FOUR
 ```
+
+## MCP Example
 
 This project also provides an MCP Server that you can register (claude code used below) so you could ask an agent like so:
 
