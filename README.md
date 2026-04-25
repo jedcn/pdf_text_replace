@@ -4,17 +4,25 @@ Replace text strings in a PDF while preserving the original font, size, and colo
 
 ## Example
 
-Imagine a PDF exists in the world named `f15314.pdf`
+Imagine a PDF exists in the world named `f15314.pdf` and you could get it on your machine via wget https://www.irs.gov/pub/irs-pdf/f15314.pdf.
 
-It has text with "Form 15314" and "April 2026" in it like so:
+When you open up this form, you see it has text with "Form 15314" and "April 2026" in it like so:
 
 ![before](docs/before.png)
 
-You want to change `April 2026` to `May 2026` and that form number `15314` to `26425`, and run:
+Imagine you want to change `April 2026` to `May 2026` and that form number `15314` to `26425`.
+
+With pdf_text_replace you can run:
 
 ```
-wget https://www.irs.gov/pub/irs-pdf/f15314.pdf
-pdf_text_replace.py --input f15314.pdf --replace "April 2026 => May 2026" --replace "15314 => 26425"
+pdf_text_replace.py --input f15314.pdf \
+    --replace "April 2026 => May 2026" \
+    --replace "15314 => 26425"
+```
+
+And you'd see the following output:
+
+```
  'April 2026' => 'May 2026'
  '15314' => '26425'
   Page 1: 'April 2026' => 'May 2026' (1x)
@@ -22,7 +30,7 @@ pdf_text_replace.py --input f15314.pdf --replace "April 2026 => May 2026" --repl
 Created: f15314_replaced.pdf
 ```
 
-You'll get:
+And when you open the newly created PDF you'd get:
 
 ![after](docs/after.png)
 
@@ -38,7 +46,29 @@ C => THREE
 D => FOUR
 ```
 
-## Additional Usage Details
+This project also provides an MCP Server that you can register (claude code used below) so you could ask an agent like so:
+
+```
+❯ Can you please replace some text in the pdf @f15314.pdf? Change the
+  date "April 2026" to "May 2026", and the form number 15314 to 26425
+  ⎿  Read f15314.pdf (64.6KB)
+
+⏺ I'll load the PDF text replace tool schema first.
+
+⏺ Now I'll make both replacements in one call.
+
+  Called pdf_text_replace (ctrl+o to expand)
+
+⏺ I'll save to a new file instead, then we can rename if needed.
+
+  Called pdf_text_replace (ctrl+o to expand)
+
+⏺ Done. Both replacements were applied and the result is saved as
+  f26425.pdf (renaming the file to match the new form number seemed
+  appropriate). The original f15314.pdf is unchanged.
+```
+
+## Exhaustive Usage
 
 ```
 pdf_text_replace.py --input <file.pdf> --replace "OLD => NEW" [--replace "..."] [--output <output.pdf>]
@@ -55,10 +85,12 @@ pdf_text_replace.py --input <file.pdf> --replacements-file <replacements.txt> [-
 | `--replacements-file` | File of replacements (see format below) |
 | `--output` | Output PDF path (default: `<input>_replaced.pdf`) |
 
-This project also comes with an [mcp_server](mcp_server.py).
+The [mcp aspect](mcp_server.py) of this project can be managed with `make mcp-install` and `make mcp-remove`
 
-The mcp aspect is managed with `make mcp-install` and `make mcp-remove`
+## Running Locally
+
+See [VENV.md](VENV.md) for virtual environment setup (including optional direnv integration)
 
 ## Development
 
-See [VENV.md](VENV.md) for virtual environment setup (including optional direnv integration) and [DEVELOPMENT.md](DEVELOPMENT.md) for running tests and installing/removing the MCP server.
+See [DEVELOPMENT.md](DEVELOPMENT.md) for running tests and installing/removing the MCP server.
