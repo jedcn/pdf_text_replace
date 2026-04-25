@@ -2,6 +2,30 @@
 
 Replace text strings in a PDF while preserving the original font, size, and color.
 
+## Example
+
+Imagine a PDF exists in the world named `f15314.pdf`
+
+It has text with "Form 15314" and "April 2026" in it like so:
+
+![before](docs/before.png)
+
+You want to change `April 2026` to `May 2026` and that form number `15314` to `26425`, and run:
+
+```
+wget https://www.irs.gov/pub/irs-pdf/f15314.pdf
+pdf_text_replace.py --input f15314.pdf --replace "April 2026 => May 2026" --replace "15314 => 26425"
+ 'April 2026' => 'May 2026'
+ '15314' => '26425'
+  Page 1: 'April 2026' => 'May 2026' (1x)
+  Page 1: '15314' => '26425' (2x)
+Created: f15314_replaced.pdf
+```
+
+You'll get:
+
+![after](docs/after.png)
+
 ## Usage
 
 ```
